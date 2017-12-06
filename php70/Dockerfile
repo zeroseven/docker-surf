@@ -33,4 +33,7 @@ ENV PATH "/tmp/vendor/bin:$PATH"
 RUN composer global require typo3/surf:^2@dev \
     && composer clear-cache
 
+# Install MySQLi so we can use this image to run functional tests
+RUN docker-php-ext-install mysqli
+
 CMD ["/bin/ash"]
