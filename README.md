@@ -1,7 +1,7 @@
 Alpine with composer, npm, gulp, typo3/surf etc.
 
 
-Choose your PHP version by using the correc tag:
+Choose your PHP version by using the matching tag:
 
 * `akoehnlein/surf:php56` PHP 5.6
 * `akoehnlein/surf:php70` PHP 7.0
