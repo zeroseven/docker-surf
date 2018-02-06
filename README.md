@@ -1,4 +1,4 @@
-Alpine with composer, npm, gulp, typo3/surf etc.
+Alpine with composer, npm, yarn, gulp, typo3/surf etc.
 
 
 Choose your PHP version by using the matching tag:
