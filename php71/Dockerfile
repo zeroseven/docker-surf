@@ -16,8 +16,10 @@ WORKDIR /app
 RUN apk --no-cache add rsync 'nodejs<7.0.0' yarn
 
 RUN npm install gulp-cli -g \
+    && yarn global add gulp-cli \
     && touch ~/.dummy \
     && npm cache clean \
+    && yarn cache clean \
     && rm -f ~/.dummy
 
 ENV PATH "/tmp/vendor/bin:$PATH"
