@@ -37,8 +37,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 ENV PATH "/tmp/vendor/bin:$PATH"
 
-# Install surf
-RUN composer global require typo3/surf:^2@dev \
+# Install typo3/surf
+# Install hirak/prestissimo for composer performance
+RUN composer global require typo3/surf:^2@dev hirak/prestissimo \
     && composer clear-cache
 
 CMD ["/bin/ash"]
