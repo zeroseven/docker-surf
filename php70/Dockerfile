@@ -6,7 +6,8 @@ RUN apk --no-cache add curl git subversion openssh openssl mercurial tini bash z
 RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
  && echo "date.timezone=${PHP_TIMEZONE:-UTC}" > "$PHP_INI_DIR/conf.d/date_timezone.ini"
 
-RUN docker-php-ext-install zip
+# Install MySQLi so we can use this image to run functional tests
+RUN docker-php-ext-install zip mysqli
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
@@ -38,8 +39,5 @@ ENV PATH "/tmp/vendor/bin:$PATH"
 # Install surf
 RUN composer global require typo3/surf:^2@dev \
     && composer clear-cache
-
-# Install MySQLi so we can use this image to run functional tests
-RUN docker-php-ext-install mysqli
 
 CMD ["/bin/ash"]
