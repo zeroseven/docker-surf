@@ -1,3 +1,5 @@
+FROM composer:1 AS composer
+
 FROM php:5.6-alpine
 
 # Inspired by official "composer" docker image
@@ -30,13 +32,8 @@ RUN npm install gulp-cli -g \
     && yarn cache clean \
     && rm -f ~/.dummy
 
-ENV PATH "/tmp/vendor/bin:$PATH"
-
-# Install composer https://getcomposer.org/download/
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php composer-setup.php  --no-ansi --install-dir=/usr/bin --filename=composer \
-    && php -r "unlink('composer-setup.php');"
-
+# copy composer from official composer image
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 ENV PATH "/tmp/vendor/bin:$PATH"
 
 # Install typo3/surf
