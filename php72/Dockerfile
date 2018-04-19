@@ -20,11 +20,9 @@ WORKDIR /app
 # Inspired by "t3easy/surf:gulp" docker image
 RUN apk --no-cache add rsync 'nodejs<7.0.0' nodejs-npm yarn
 
-# install gulp-cli as global module (npm and yarn)
-RUN npm install gulp-cli -g \
-    && yarn global add gulp-cli \
+# install gulp-cli as global module
+RUN yarn global add gulp-cli \
     && touch ~/.dummy \
-    && npm cache clean \
     && yarn cache clean \
     && rm -f ~/.dummy
 

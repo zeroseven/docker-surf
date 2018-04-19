@@ -24,11 +24,9 @@ RUN apk --no-cache add rsync 'nodejs<7.0.0'
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 ENV PATH "/root/.yarn/bin:/root/.config/yarn/global/node_modules/.bin:$PATH"
 
-# install gulp-cli as global module (npm and yarn)
-RUN npm install gulp-cli -g \
-    && yarn global add gulp-cli \
+# install gulp-cli as global module
+RUN yarn global add gulp-cli \
     && touch ~/.dummy \
-    && npm cache clean \
     && yarn cache clean \
     && rm -f ~/.dummy
 
