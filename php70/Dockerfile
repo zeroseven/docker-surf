@@ -18,7 +18,7 @@ ENV COMPOSER_HOME /tmp
 WORKDIR /app
 
 # Inspired by "t3easy/surf:gulp" docker image
-RUN apk --no-cache add rsync 'nodejs<7.0.0'
+RUN apk --no-cache add rsync nodejs
 
 # install yarn
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
