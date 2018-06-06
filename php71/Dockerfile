@@ -35,8 +35,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ENV PATH "/tmp/vendor/bin:$PATH"
 
 # Install typo3/surf
-# Install hirak/prestissimo for composer performance
-RUN composer global require typo3/surf:^2@dev hirak/prestissimo \
+RUN composer global require typo3/surf:^2@dev \
     && composer clear-cache
 
 CMD ["/bin/ash"]
