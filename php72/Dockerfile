@@ -31,7 +31,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ENV PATH "/tmp/vendor/bin:$PATH"
 
 # Install typo3/surf
-RUN composer global require typo3/surf:^2@dev \
+RUN composer global require typo3/surf:dev-master#338db07c8eb76912987d3af0dc287d749b25bc5c \
     && composer clear-cache
 
 CMD ["/bin/ash"]
