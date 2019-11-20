@@ -5,6 +5,9 @@ FROM php:7.0-alpine
 # Inspired by official "composer" docker image
 RUN apk --update --no-cache add curl git subversion openssh openssl mercurial tini bash zlib-dev libpng-dev nodejs $PHPIZE_DEPS
 
+# Install patch for cweagans/composer-patches
+RUN apk --no-cache add patch
+
 RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
  && echo "date.timezone=${PHP_TIMEZONE:-UTC}" > "$PHP_INI_DIR/conf.d/date_timezone.ini"
 
