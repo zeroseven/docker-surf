@@ -1,6 +1,6 @@
 FROM composer:1 AS composer
 
-FROM php:7.3-alpine
+FROM php:7.4-alpine
 
 # Inspired by official "composer" docker image
 RUN apk --no-cache add curl git subversion openssh openssl mercurial tini bash libzip-dev zlib-dev libpng-dev npm $PHPIZE_DEPS autoconf automake g++ libc6-compat libjpeg-turbo-dev make nasm
@@ -34,7 +34,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ENV PATH "/tmp/vendor/bin:$PATH"
 
 # Install typo3/surf
-RUN composer global require typo3/surf:^2 \
+RUN composer global require typo3/surf:^3@dev \
     && composer clear-cache
 
 CMD ["/bin/ash"]
