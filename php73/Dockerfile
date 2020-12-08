@@ -3,7 +3,7 @@ FROM composer:1 AS composer
 FROM php:7.3-alpine
 
 # Inspired by official "composer" docker image
-RUN apk --no-cache add curl git subversion openssh openssl mercurial tini bash libzip-dev zlib-dev libpng-dev npm $PHPIZE_DEPS autoconf automake g++ libc6-compat libjpeg-turbo-dev make nasm
+RUN apk --no-cache add curl git subversion openssh openssl mercurial tini bash libzip-dev libpng-dev icu-dev npm $PHPIZE_DEPS autoconf automake g++ libc6-compat libjpeg-turbo-dev make nasm
 
 # Install patch for cweagans/composer-patches
 RUN apk --no-cache add patch
@@ -13,6 +13,8 @@ RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
 
 # Install some php modules so we can use this image to run functional tests
 RUN docker-php-ext-install zip mysqli gd \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
     && pecl install xdebug \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > "$PHP_INI_DIR/conf.d/xdebug.ini"
 
