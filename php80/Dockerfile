@@ -16,7 +16,8 @@ RUN docker-php-ext-install zip mysqli gd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && pecl install xdebug \
-    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > "$PHP_INI_DIR/conf.d/xdebug.ini"
+    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > "$PHP_INI_DIR/conf.d/xdebug.ini" \
+    && echo "xdebug.mode=coverage" >> "$PHP_INI_DIR/conf.d/xdebug.ini"
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
