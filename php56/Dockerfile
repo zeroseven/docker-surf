@@ -38,7 +38,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ENV PATH "/tmp/vendor/bin:$PATH"
 
 # Install typo3/surf
-RUN composer global require typo3/surf:2.1.1 \
+RUN composer global require typo3/surf:~2.0.0 \
     && composer clear-cache
 
 CMD ["/bin/ash"]
