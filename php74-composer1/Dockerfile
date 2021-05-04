@@ -1,6 +1,6 @@
 FROM composer:1 AS composer
 
-FROM php:7.2-alpine
+FROM php:7.4-alpine
 
 # Inspired by official "composer" docker image
 RUN apk --no-cache add curl git subversion openssh openssl mercurial tini bash libzip-dev libpng-dev icu-dev npm $PHPIZE_DEPS autoconf automake g++ libc6-compat libjpeg-turbo-dev make nasm
@@ -12,8 +12,7 @@ RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
  && echo "date.timezone=${PHP_TIMEZONE:-UTC}" > "$PHP_INI_DIR/conf.d/date_timezone.ini"
 
 # Install some php modules so we can use this image to run functional tests
-RUN docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install zip mysqli gd \
+RUN docker-php-ext-install zip mysqli gd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && pecl install xdebug \
@@ -28,7 +27,7 @@ WORKDIR /app
 RUN apk --no-cache add rsync nodejs yarn
 
 # install gulp-cli as global module
-RUN yarn global add gulp-cli webpack webpack-cli \
+RUN yarn global add gulp-cli \
     && touch ~/.dummy \
     && yarn cache clean \
     && rm -f ~/.dummy
