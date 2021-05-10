@@ -19,6 +19,10 @@ All available tags are listed on <https://hub.docker.com/r/zeroseven07/docker-su
 
 ## Changelog
 
+### 10.05.2021
+
+* Add vips for php 7.4
+
 ### 04.05.2021
 
 * Use composer 2 as default for php >= 7.2

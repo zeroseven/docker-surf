@@ -5,6 +5,9 @@ FROM php:7.4-alpine
 # Inspired by official "composer" docker image
 RUN apk --no-cache add curl git subversion openssh openssl mercurial tini bash libzip-dev libpng-dev icu-dev npm $PHPIZE_DEPS autoconf automake g++ libc6-compat libjpeg-turbo-dev make nasm
 
+# Install vips for node-gyp
+RUN apk --no-cache add vips
+
 # Install patch for cweagans/composer-patches
 RUN apk --no-cache add patch
 
